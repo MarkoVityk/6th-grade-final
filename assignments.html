@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marko's End of Semester Website</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+        }
+    </style>
+    <script>
+    function lerpColor(a, b, t) {
+        const ah = a.match(/\w\w/g).map(x => parseInt(x, 16));
+        const bh = b.match(/\w\w/g).map(x => parseInt(x, 16));
+        const rh = ah.map((v, i) => Math.round(v + (bh[i] - v) * t));
+        return '#' + rh.map(x => x.toString(16).padStart(2, '0')).join('');
+    }
+    const blue1 = '#6dc4ff', blue2 = '#ccebff';
+    const green1 = '#6dffb0', green2 = '#ccebe0';
+    const yellow1 = '#fff86d', yellow2 = '#fffccf';
+    function setBg() {
+        const scroll = window.scrollY;
+        const max = document.body.scrollHeight - window.innerHeight;
+        let t = max === 0 ? 0 : scroll / max;
+        let grad;
+        if (t < 0.5) {
+            const p = t / 0.5;
+            grad = `linear-gradient(to right, ${lerpColor(blue1, green1, p)}, ${lerpColor(blue2, green2, p)})`;
+        } else {
+            const p = (t - 0.5) / 0.5;
+            grad = `linear-gradient(to right, ${lerpColor(green1, yellow1, p)}, ${lerpColor(green2, yellow2, p)})`;
+        }
+        document.body.style.background = grad;
+    }
+    window.addEventListener('scroll', setBg);
+    window.addEventListener('resize', setBg);
+    document.addEventListener('DOMContentLoaded', setBg);
+    </script>
+</head>
+<body>
+    <div class="section1">
+        <div class="topbar">
+            <div class="title"><a href="index.html">Marko's End of Semester Website</a></div>
+            <div class="nav-links">
+                <a href="#"></a>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <!--start-->
+        <div class="container">
+            <div class="embed-box">
+                <iframe src="https://docs.google.com/document/d/1SenXpBAMqcdTGzX0EnNrEO2TnuTwEdmuiWRqkJVdjpg/edit?usp=sharing"></iframe>
+            </div>
+            <div>
+                <div class="text-box">Journal</div>
+                <div class="subtext"><a href="https://docs.google.com/document/d/1SenXpBAMqcdTGzX0EnNrEO2TnuTwEdmuiWRqkJVdjpg/edit?usp=sharing">This is the journal we made to keep track of what we do every day (Click text to open)</a></div>
+            </div>
+        </div>
+        <!--end-->
+        <div class="container">
+            <div class="embed-box">
+                <iframe src="https://docs.google.com/spreadsheets/d/1K-BRFj2Z4tSpH-4nceLSda9iMJ0D2-Gd9TgIcEwN1Ko/edit?usp=sharing"></iframe>
+            </div>
+            <div>
+                <div class="text-box">Typing journal</div>
+                <div class="subtext"><a href="https://docs.google.com/spreadsheets/d/1K-BRFj2Z4tSpH-4nceLSda9iMJ0D2-Gd9TgIcEwN1Ko/edit?usp=sharing">This is the journal we made to keep track of what we do every day (Click text to open)</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-links">
+        <a href="index.html">Good job! You made it to the bottom! Press the Text on the topbar to go back to the main page, or press this text.</a>
+    </div>
+</body>
+</html>
